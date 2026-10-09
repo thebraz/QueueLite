@@ -16,6 +16,6 @@ paths from reports. For security issues, use the repository's private GitHub
 security reporting channel when available; do not post credentials or sensitive
 queue data in public issues.
 
-Version 0.1.1 is an initial experimental release. No stable production or
+Version 0.1.2 is an initial experimental release. No stable production or
 throughput guarantee is offered. Maintainers review compatibility and release
 versions explicitly; CI does not publish packages automatically.

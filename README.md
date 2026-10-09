@@ -1,6 +1,6 @@
 # QueueLite
 
-A persistent background job queue for Node.js and TypeScript, backed by a local SQLite file. QueueLite keeps scheduled work and retry state across application restarts without requiring Redis or a database server. Version 0.1.1 is an initial experimental release; validate it against your workload before production use.
+A persistent background job queue for Node.js and TypeScript, backed by a local SQLite file. QueueLite keeps scheduled work and retry state across application restarts without requiring Redis or a database server. Version 0.1.2 is an initial experimental release; validate it against your workload before production use.
 
 ## Features
 
@@ -40,7 +40,7 @@ The examples simulate welcome email, account provisioning, retry/recovery and a 
 
 ## First job
 
-Save this as `quick-start.mjs` after installing the package, then run `node quick-start.mjs`. It also runs from a built repository checkout. A local release candidate can be installed with `npm install /path/to/thebraz-queuelite-0.1.1.tgz` before registry publication.
+Save this as `quick-start.mjs` after installing the package, then run `node quick-start.mjs`. It also runs from a built repository checkout. A local release candidate can be installed with `npm install /path/to/thebraz-queuelite-0.1.2.tgz` before registry publication.
 
 ```js
 import { createQueue } from '@thebraz/queuelite';
@@ -251,4 +251,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Run `npm run validate` for typing, lint,
 
 ## License
 
-[MIT](LICENSE).
+QueueLite — [MIT License](LICENSE). Copyright (c) 2026 braz.

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 — 2026-10-09
+
+- Attribute the MIT copyright to braz and name QueueLite in the README license section.
+- Documentation and license attribution only; runtime behavior is unchanged.
+
 ## 0.1.1 — 2026-10-09
 
 Initial experimental public release after cross-platform validation fixes.
