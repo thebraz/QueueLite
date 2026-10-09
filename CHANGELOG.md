@@ -10,6 +10,8 @@ Initial experimental public release after cross-platform validation fixes.
 - Hold the concurrency scenario's workload until its monotonic deadline, keeping
   the two-second minimum assertion even when a platform timer wakes early.
 - Retain the actual failing operational scenario in nested-runner diagnostics.
+- Allow the multi-batch recovery test to finish on slower CI disks without
+  reducing its job count or recovery assertions.
 - Keep the initial `v0.1.0` preparation tag; no package was published at that version.
 
 ## 0.1.0 — 2026-10-09

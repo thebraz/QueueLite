@@ -192,7 +192,7 @@ describe('leases and ownership', () => {
     finally { db.close(); }
     await q.createWorker({ pollIntervalMs: 1 }).drain();
     expect(jobs.every((job) => q.getJob(job.id)?.status === 'failed')).toBe(true);
-  });
+  }, 20000); // Hundreds of durable writes can exceed the default timeout on CI disks.
   it('migrates version 1 atomically, preserving payloads, terminal errors and recovering active jobs', () => {
     const database = path(); const db = new Database(database);
     db.exec(`CREATE TABLE jobs (id TEXT PRIMARY KEY, name TEXT, payload TEXT, status TEXT, created_at INTEGER, updated_at INTEGER,
