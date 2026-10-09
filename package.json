@@ -1,0 +1,41 @@
+{
+  "name": "@thebraz/queuelite",
+  "version": "0.1.0",
+  "description": "A lightweight persistent SQLite job queue for Node.js",
+  "license": "MIT",
+  "author": "thebraz",
+  "repository": { "type": "git", "url": "git+https://github.com/thebraz/QueueLite.git" },
+  "homepage": "https://github.com/thebraz/QueueLite#readme",
+  "bugs": { "url": "https://github.com/thebraz/QueueLite/issues" },
+  "keywords": ["queue", "jobs", "sqlite", "background-jobs", "typescript", "nodejs", "persistent", "worker", "cli"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": { "queuelite": "./dist/cli.js" },
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "files": ["dist/*.js", "dist/*.d.ts", "README.md", "LICENSE"],
+  "engines": { "node": ">=22.14" },
+  "scripts": {
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.check.json",
+    "lint": "eslint .",
+    "build": "tsc",
+    "prepack": "npm run build",
+    "validate": "npm run typecheck && npm run lint && npm test && npm run examples && npm run verify:package",
+    "test": "npm run build && vitest run",
+    "verify:stage2": "npm run build && node scripts/verify-stage2.mjs",
+    "verify:stage3": "npm run build && node scripts/verify-stage3.mjs",
+    "example": "node examples/welcome-email.mjs",
+    "examples": "node examples/welcome-email.mjs && node examples/account-provisioning.mjs && node examples/retry-recovery.mjs && node examples/delayed-job.mjs",
+    "verify:package": "npm run build && node scripts/verify-package.mjs"
+  },
+  "dependencies": { "better-sqlite3": "^13.0.3" },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.0.0",
+    "eslint": "^10.12.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.1",
+    "vitest": "^5.0.3"
+  }
+}
