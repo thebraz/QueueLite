@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.1 — 2026-10-09
+
+Initial experimental public release after cross-platform validation fixes.
+
+- Skip dependency lifecycle scripts in locked development installs to avoid an
+  unnecessary native rebuild on Windows; keep normal installation in consumer checks.
+- Use npm 11.6.4 as the cross-platform CI baseline.
+- Hold the concurrency scenario's workload until its monotonic deadline, keeping
+  the two-second minimum assertion even when a platform timer wakes early.
+- Retain the actual failing operational scenario in nested-runner diagnostics.
+- Keep the initial `v0.1.0` preparation tag; no package was published at that version.
+
 ## 0.1.0 — 2026-10-09
 
 Initial experimental release candidate, prepared for publication as

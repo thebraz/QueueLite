@@ -547,7 +547,8 @@ const cases = {
       timeout: 180000, excerpt: 200,
       env: Object.fromEntries(Object.entries(process.env).filter(([name]) => name.toLowerCase() !== 'npm_config_case')),
     });
-    assert.equal(regression.code, 0, `Stage 2 operational regressions failed. ${regression.stdout.slice(-5000)} ${regression.stderr}`);
+    const failures = regression.stdout.split(/(?=^(?:PASS|FAIL) \d{2} - )/m).filter((section) => section.startsWith('FAIL ')).join('\n');
+    assert.equal(regression.code, 0, `Stage 2 operational regressions failed. ${failures || regression.stdout.slice(-5000)} ${regression.stderr}`);
     assert.match(regression.stdout, /PASS TOTAL: 13\/13/);
     const packageResult = await execute(context, join(root, 'scripts', 'verify-package.mjs'), [], { timeout: 120000, excerpt: 1000 });
     assert.equal(packageResult.code, 0, `Packaged public import/CLI/declarations/examples failed; registry access or populated npm cache may be required. ${packageResult.stderr.slice(-5000)}`);

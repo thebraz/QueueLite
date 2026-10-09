@@ -97,7 +97,10 @@ const cases = {
     const worker = queue.createWorker({ pollIntervalMs: 10 }).register('task', async (job) => {
       const execution = { id: job.id, startedAt: Date.now(), active: ++active };
       const began = performance.now(); maximum = Math.max(maximum, active); executions.push(execution);
-      try { await sleep(2000); } finally { execution.durationMs = Math.round(performance.now() - began); active--; }
+      try {
+        // Timers can wake slightly early; keep the measured workload at least two seconds.
+        while (performance.now() - began < 2000) await sleep(Math.max(1, Math.ceil(2000 - (performance.now() - began))));
+      } finally { execution.durationMs = Math.round(performance.now() - began); active--; }
     });
     context.evidence.executions = executions;
     const began = performance.now(); const running = start(context, worker, { concurrency: 2 });

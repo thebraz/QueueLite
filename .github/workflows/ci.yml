@@ -23,7 +23,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - run: npm ci
+      - run: npm install --global npm@11.6.4
+      - run: npm ci --ignore-scripts
       - run: npm run validate
       - run: npm run verify:stage3
         if: matrix.os == 'ubuntu-latest' && matrix.node == '24'

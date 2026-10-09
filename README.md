@@ -1,6 +1,6 @@
 # QueueLite
 
-A persistent background job queue for Node.js and TypeScript, backed by a local SQLite file. QueueLite keeps scheduled work and retry state across application restarts without requiring Redis or a database server. Version 0.1.0 is an initial experimental release; validate it against your workload before production use.
+A persistent background job queue for Node.js and TypeScript, backed by a local SQLite file. QueueLite keeps scheduled work and retry state across application restarts without requiring Redis or a database server. Version 0.1.1 is an initial experimental release; validate it against your workload before production use.
 
 ## Features
 
@@ -12,7 +12,7 @@ A persistent background job queue for Node.js and TypeScript, backed by a local 
 
 ## Installation
 
-Use Node.js 22.14 or newer and npm. The package exports **ES modules only**; CommonJS `require()` is not supported. `better-sqlite3` is the only direct runtime dependency and includes native code; platform support depends on its native binaries or available build tools.
+Use Node.js 22.14 or newer. CI uses npm 11.6.4. The package exports **ES modules only**; CommonJS `require()` is not supported. `better-sqlite3` is the only direct runtime dependency and includes native code; platform support depends on its native binaries or available build tools.
 
 ```sh
 npm install @thebraz/queuelite
@@ -25,7 +25,7 @@ The executable remains `queuelite`. Package examples are available in this repos
 Use Node.js 22.14 or newer on a supported Node.js release line, and npm.
 
 ```sh
-npm ci
+npm ci --ignore-scripts
 npm run typecheck
 npm run lint
 npm run build
@@ -34,11 +34,13 @@ npm run examples
 npm run verify:package
 ```
 
+The locked development install skips dependency lifecycle scripts because the native dependency ships its supported-platform binaries. This avoids an unnecessary native rebuild during `npm ci`; validation still loads the actual binary, and the consumer check uses normal `npm install`.
+
 The examples simulate welcome email, account provisioning, retry/recovery and a delayed notification, without credentials. They use isolated in-memory queues by default. `npm run example -- ./another.db` opts into a persistent welcome-email database; create its parent directory first. Existing files are preserved, but writable SDK access upgrades old schemas. Process tests exercise the built SDK; `npm test` builds before running them. `verify:package` packs and installs into a temporary consumer, checks public imports and TypeScript declarations, invokes the installed CLI and runs all four repository examples against the installed package. It requires npm registry access (or a populated cache), uses normal npm installation and removes only its own temporary consumer.
 
 ## First job
 
-Save this as `quick-start.mjs` after installing the package, then run `node quick-start.mjs`. It also runs from a built repository checkout. A local release candidate can be installed with `npm install /path/to/thebraz-queuelite-0.1.0.tgz` before registry publication.
+Save this as `quick-start.mjs` after installing the package, then run `node quick-start.mjs`. It also runs from a built repository checkout. A local release candidate can be installed with `npm install /path/to/thebraz-queuelite-0.1.1.tgz` before registry publication.
 
 ```js
 import { createQueue } from '@thebraz/queuelite';
