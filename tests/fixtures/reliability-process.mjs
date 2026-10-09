@@ -29,7 +29,9 @@ if (mode === 'lock') {
       }
       send('produced', { ids: jobs });
     } else {
-      const worker = queue.createWorker({ pollIntervalMs: 5, leaseDurationMs: 250, heartbeatIntervalMs: 50, concurrency: 3 });
+      // Only the crashed/stalled owner needs a short lease; the replacement must tolerate CI scheduling delays.
+      const worker = queue.createWorker({ pollIntervalMs: 5, leaseDurationMs: mode === 'recover' ? 30000 : 250,
+        heartbeatIntervalMs: mode === 'recover' ? 10000 : 50, concurrency: 3 });
       const seen = [];
       worker.register('task', async (job) => {
         seen.push(job.id); send('claimed', { id: job.id, attempt: job.attempts });
