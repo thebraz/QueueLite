@@ -247,7 +247,7 @@ Payloads must be finite, acyclic plain JSON. Accessors, custom object/array prot
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Run `npm run validate` for typing, lint, tests, examples and a clean tarball consumer check. The CI workflow validates changes without automatically publishing them. Release notes are in [CHANGELOG.md](CHANGELOG.md).
+See [CONTRIBUTING.md](https://github.com/thebraz/QueueLite/blob/main/CONTRIBUTING.md). Run `npm run validate` for typing, lint, tests, examples and a clean tarball consumer check. The CI workflow validates changes without automatically publishing them. Release notes are in [CHANGELOG.md](https://github.com/thebraz/QueueLite/blob/main/CHANGELOG.md).
 
 ## License
 
